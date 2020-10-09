@@ -3,4 +3,7 @@ from . import views
 
 urlpatterns=[
     url('^$',views.home,name = 'home'),
+    url('^search/',views.search_category,name = 'search_category'),
 ]
+if settings.DEBUG:
+    urlpatterns+= static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

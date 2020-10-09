@@ -1,5 +1,32 @@
 {%extends 'galleries/base.html'%}
 
 {% block content %}
-    {{block.super}}
+{{ block.super}}
+
+
+<div class="container">
+    <!-- Looping through Images   -->
+    <div class="row">
+        <legend class="header" style="color: white;">NYURURU - GALLERY</legend>
+        {% for image in images %}
+        <div class="col-lg-3 col-md-3 mb-2" style="padding-right: 10px;">
+            <div class="card text-center" style="max-width: 120rem;" class="card border-success mb-3">
+                <div class="card-header">
+                <img class="text-center" src="{{image.image.url}}" class="img-responsive" alt="Image" style="height: 40vh; width: 100%;">
+                </div>
+                <div class="card-body">
+                <h4 class="text-center" style="color: crimson;"> {{ image.image_description}} </h4>
+                </div>
+            </div><br>
+        </div>
+
+        
+
+        {% empty %}
+        <div class="row">
+        <h3 class="text-center">There Are No Images For Now</h3>
+        </div>
+        {% endfor %}
+</div>
+
 {% endblock %}
