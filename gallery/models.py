@@ -3,7 +3,7 @@ from django.db import models
 # Models.
 class Image(models.Model):
     image= models.ImageField(upload_to = 'articles/', default='No Image')
-    title= models.CharField(max_length =60, null=True)
+    title= models.CharField(max_length =60)
     image_description=models.TextField()
     date=models.DateTimeField(auto_now_add=True)
     location=models.ForeignKey('Location',on_delete=models.CASCADE)
