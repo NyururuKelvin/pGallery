@@ -1,0 +1,41 @@
+
+{% extends 'galleries/base.html'%}
+{% load bootstrap4%}
+{% load static %}
+{% block title %}
+{{title}}
+{% endblock %}
+{% block styles%}
+        {% bootstrap_css%}
+        <link rel="stylesheet" href="{% static 'css/galleries.css'%}">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Tangerine">
+{% endblock %}
+{% block content %}
+<legend></legend>
+<div class="row">
+    <div class="col-lg-12 col-md-12" >
+        <!-- <div class="row"> -->
+        <legend class="header" style="color: white;">SEARCHES FOR {{message}}</legend>
+        <div class="row">
+            <div class="col-lg-2 col-md-2"></div>
+            <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 mb-2" style="padding-right: 10px;">
+                <div class="card" style="width: 100%;">
+                    <div class="card-body">
+                        <div class="col-lg-4 col-md-4">
+                            <img src="{{image.image.url}}" class="img-responsive" alt="IMAGE" title="" style="height:40vh; width: 100%; background-size: cover;" >
+                        </div><br>
+                        <div class="col-lg-8 col-md-8">
+                            
+                                <h5 class="card-title" style="font-weight: bolder;">{{image.title}}</h5>
+                                <p class="card-text">{{image.description}}</p>
+                                <span class="small">Location:</span><a href="{% url 'gallery:filter_by_location' image.location.pk %}" style="text-decoration: none;"><span class="small">{{image.location}}</span></a><span></span><span class="small"> Date :</span><a href="" style="text-decoration: none;"><span class="small">{{image.date |  date:"M d,Y , f A"}}</span></a>
+                        </div> 
+                    </div>  
+                </div>               
+            </div>
+            <div class="col-lg-2 col-md-2"></div>
+        </div>
+        <!-- </div> -->
+    </div>
+</div>
+{% endblock%}
