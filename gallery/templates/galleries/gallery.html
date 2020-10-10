@@ -3,19 +3,19 @@
 {% block content %}
 {{ block.super}}
 
-
+<div class="container-fluid home">
 <div class="container">
     <!-- Looping through Images   -->
     <div class="row">
         <legend class="header" style="color: white;">NYURURU - GALLERY</legend>
         {% for image in images %}
-        <div class="col-lg-3 col-md-3 mb-2" style="padding-right: 10px;">
-            <a id="link" type="button" style="background-color: rgb(243, 225, 243);" data-toggle="modal" data-target="#exampleModalLong{{image.id}}">
-            <img src="{{image.image.url}}" class="img-responsive" alt="Image" style="height: 40vh; width: 100%;">
+        <div class="col-lg-3 col-md-3 mb-2" style="padding-right: 10px; border-radius: 15px;">
+            <a id="link" type="button" style="background-color: rgb(24, 53, 58);" data-toggle="modal" data-target="#exampleModalLong{{image.id}}">
+            <img src="{{image.image.url}}" class="img-responsive" alt="Image" style="height: 40vh; width: 100%; border-radius: 18px;">
             </a>
         </div>
         <div class="modal fade" id="exampleModalLong{{image.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-        <div class="modal-dialog" role="document">
+            <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h2 class="modal-title" id="exampleModalLongTitle">{{ image.name}}</h2>
@@ -31,14 +31,15 @@
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     </div>
                 </div>
+            </div>
         </div>
-        </div>
-        <!-- displaying photos images -->
+    
         {% empty %}
         <div class="row">
             <h3 class="text-center">There Are No Images For Now</h3>
         </div>
         {% endfor %}
+</div>
 </div>
 
 {% endblock %}

@@ -1,11 +1,12 @@
 body{
     width: 100%;
+    background-color: rgb(202, 209, 209);
 }
 .header{
     text-align: center;
     font-family: 'Tangerine', serif;
     font-size: 40px;
-    text-shadow: 4px 4px 4px crimson;
+    text-shadow: 4px 4px 4px rgb(24, 53, 58);
 }
 a{
     text-decoration: none;

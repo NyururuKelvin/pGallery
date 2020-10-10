@@ -1,32 +1,39 @@
-{% extends 'galleries/base.html'%}
-{% load bootstrap4%}
-{% load static %}
-
-{% block styles%}
-        {% bootstrap_css%}
-        <link rel="stylesheet" href="{% static 'css/galleries.css'%}">
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Tangerine">
-{% endblock %}
-
+{%extends 'galleries/base.html'%}
 {% block content %}
-<legend></legend>
-<div class="row">
-    <div class="col-lg-12 col-md-12" >
-        <div class="row">
-            <legend class="header" style="color: white;">SEARCHES FOR {{message}}</legend>
-            {%for location in locations%}
-            <div class="col-lg-3 col-md-3 mb-2" style="padding-right: 30px;">
-                <div class="card" style="width: 18rem;">
-                    <img data-toggle="modal" data-target="#exampleModalCenter"  src="{{location.image.url}}" class="card-img-top img-responsive index_image" alt="IMAGE" title="" style="height:40vh; width: 100%; background-size: cover;" >
-                    <div class="card-body">
-                      <h5 class="card-title">{{location.title}}</h5>
-                      <p class="card-text">{{location.description}}</p>
-                      <span class="small">Location:</span><a href="{% url 'gallery:filter_by_location' location.location.pk %}" style="text-decoration: none;"><span class="small">{{location.location}}</span></a><span></span><span class="small"> Date :</span><a href="" style="text-decoration: none;"><span class="small">{{location.date |  date:"M d,Y , f A"}}</span></a>
-                    </div>  
-                </div>               
-            </div>
-            {%endfor%}
-        </div>
+{{ block.super}}
+<div class="container">
+<!-- Looping through Images   -->
+  <div class="row">
+    <legend class="header" style="color: white;">NYURURU - GALLERY</legend>
+    {% for location in locations %}
+    <div class="col-lg-3 col-md-3 mb-2" style="padding-right: 10px;">
+        <a id="link" type="button" style="background-color: rgb(243, 225, 243);" data-toggle="modal" data-target="#exampleModalLong{{image.id}}">
+        <img src="{{image.image.url}}" class="img-responsive" alt="Image" style="height: 40vh; width: 100%;">
+        </a>
     </div>
+    <div class="modal fade" id="exampleModalLong{{image.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h2 class="modal-title" id="exampleModalLongTitle">{{ image.name}}</h2>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <img src="{{image.image.url}}" class="img-responsive" alt="Image" style="height: 40vh; width: 100%;">
+            <h4 style="color: crimson;"> {{ image.description}} </h4>
+            <h4 style="color: crimson;"> {{ image.name}} </h4>
+            <span class="small">Location:</span><a href="" style="text-decoration: none;"><span class="small">{{image.location.location}}</span></a><span></span><span class="small"> Date :</span><a href="" style="text-decoration: none;"><span class="small">{{image.date |  date:"M d,Y , f A"}}</span></a> <br>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% empty %}
+    <div class="row">
+        <h3 class="text-center">There Are No Images For Now</h3>
+    </div>
+    {% endfor %}
 </div>
-{% endblock%}
+{% endblock %}
