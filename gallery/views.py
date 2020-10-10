@@ -13,13 +13,12 @@ def get_image_by_id(request,image_id):
     return render(request,'galleries/gallery.html', {'images':images})
 
 def search_category(request):
-    if 'category' in request.GET and request.GET['category']:
-        search_term=request.GET.get('category')
-        images =Image.search_image(search_term)
-        print(images)
+    if 'image' in request.GET and request.GET['image']:
+        search_term=request.GET.get('image')
+        searched_images=Image.search_by_category(search_term)
         message=f'{search_term}'
         
-        return render(request,'galleries/search_category.html',{'message':message,'images':images,'title':search_term})
+        return render(request,'galleries/search_category.html',{'message':message,'images':searched_images,'title':search_term})
     
     else:
         message=f"You haven't searched for anything."

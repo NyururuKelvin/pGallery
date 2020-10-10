@@ -3,6 +3,7 @@ from django.db import models
 # Models.
 class Image(models.Model):
     image= models.ImageField(upload_to = 'articles/', default='No Image')
+    title= models.CharField(max_length =60, null=True)
     image_description=models.TextField()
     date=models.DateTimeField(auto_now_add=True)
     location=models.ForeignKey('Location',on_delete=models.CASCADE)
@@ -34,11 +35,9 @@ class Image(models.Model):
     
     # Searching images
     @classmethod
-    def search_image(cls,category_image):
-        categories=Category.objects.filter(category=category_image)
-        for category in categories:          
-            image=cls.objects.filter(category=category)
-        return image
+    def search_by_category(cls,search_term):
+        images = cls.objects.filter(category__icontains=search_term)
+        return images
 
     # Filtering images by location 
     @classmethod
