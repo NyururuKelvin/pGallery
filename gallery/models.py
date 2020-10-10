@@ -3,8 +3,8 @@ from django.db import models
 # Models.
 class Image(models.Model):
     image= models.ImageField(upload_to = 'articles/', default='No Image')
-    title= models.CharField(max_length =60)
-    image_description=models.TextField()
+    name= models.CharField(max_length =60)
+    description=models.TextField()
     date=models.DateTimeField(auto_now_add=True)
     location=models.ForeignKey('Location',on_delete=models.CASCADE)
     category=models.ForeignKey('Category',on_delete=models.CASCADE)
@@ -35,8 +35,8 @@ class Image(models.Model):
     
     # Searching images
     @classmethod
-    def search_by_title(cls,search_term):
-        gallery = cls.objects.filter(title__icontains=search_term)
+    def search_by_category(cls,search_term):
+        gallery = cls.objects.filter(name__icontains=search_term)
         return gallery
 
     # Filtering images by location 

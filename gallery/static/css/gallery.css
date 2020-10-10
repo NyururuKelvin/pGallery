@@ -1,0 +1,12 @@
+body{
+    width: 100%;
+}
+.header{
+    text-align: center;
+    font-family: 'Tangerine', serif;
+    font-size: 40px;
+    text-shadow: 4px 4px 4px crimson;
+}
+a{
+    text-decoration: none;
+}
