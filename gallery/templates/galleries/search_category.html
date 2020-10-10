@@ -1,29 +1,32 @@
 {%extends 'galleries/base.html'%} 
 {% block content %}
-<legend></legend>
-<div class="row">
-	<div class="col-lg-12 col-md-12">
-		<div class="row">
-			{% if images%}
-				<legend class="header" style="color: white;">SEARCHES FOR {{message}}</legend>
-			{% else %}
-				<legend class="header" style="color: white;">FOUND 0 IMAGES FOR {{message}}</legend>
-			{% endif %}
-			
-			{% if images %}
-			{% for image in images %}
-			<div class="col-lg-3 col-md-3 " >
-				<div class="card" style="width: 20rem; background-color:papayawhip;  margin-left: 20px; " style="padding-right: 30px;">
-					<img src="{{image.image_image.ur}}" class="card-img-top img-responsive index_image" alt="IMAGE" title="" style="height:40vh; width: 100%;">
-					<div class="card-body">
-						<h5 class="card-title">{{image.description}}</h5>
-						<span class="small">Location:</span><a href="" style="text-decoration: none;"><span class="small">{{image.location}}</span></a><span></span><span class="small">Date :</span><a href="" style="text-decoration: none;"><span class="small">{{image.date |  date:"M d,Y , f A"}}</span></a>
-					</div>
-				</div>
-			</div>
-			{% endfor %}
-			{% endif %}
-		</div>
-	</div>
+<div class="container">
+  <legend></legend>
+  <div class="row">
+    {% if images%}
+    <legend class="header" style="color: white;">SEARCHES FOR {{message}} CATEGORY</legend>
+    {% else %}
+    <legend class="header" style="color: white;">FOUND 0 IMAGES FOR {{message}} CATEGORY</legend>
+    {% endif %}
+
+  </div>
+
+  <div class="row">
+
+  {% if images %}
+    {% for image in images %}
+      <div class="col-sm-6 col-md-3">
+        <div class="card text-center">
+          <div class="card-header">
+            <img class="text-center" src="{{image.image.url}}" class="img-responsive" alt="Image" style="height: 40vh; width: 100%;">
+          </div>
+          <div class="card-body">
+            <h4 class="text-center" style="color: crimson;"> {{ image.title }} </h4>
+          </div>
+        </div><br>
+      </div>
+    {% endfor %}
+  {% endif %}
+  </div>
 </div>
-{% endblock%}
+{% endblock %}
