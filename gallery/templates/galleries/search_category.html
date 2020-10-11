@@ -6,7 +6,7 @@
     {% if images%}
     <legend class="header" style="color: white;">SEARCHES FOR {{message}} CATEGORY</legend>
     {% else %}
-    <legend class="header" style="color: white;">FOUND 0 IMAGES FOR {{message}} CATEGORY</legend>
+    <legend class="header" style="color: white;">FOUND 0 IMAGES</legend>
     {% endif %}
 
   </div>
@@ -15,18 +15,30 @@
 
   {% if images %}
     {% for image in images %}
-      <div class="col-sm-6 col-md-3">
-        <div class="card text-center">
-          <div class="card-header">
-            <img class="text-center" src="{{image.image.url}}" class="img-responsive" alt="Image" style="height: 40vh; width: 100%;">
+    <div class="col-lg-3 col-md-3 mb-2" style="padding-right: 10px; border-radius: 15px;">
+      <a id="link" type="button" style="background-color: rgb(24, 53, 58);" data-toggle="modal" data-target="#exampleModalLong{{image.id}}">
+      <img src="{{image.image.url}}" class="img-responsive" alt="Image" style="height: 40vh; width: 100%; border-radius: 18px;">
+      </a>
+      <h6 class="text-center">Click Image For Details</h6>
+  </div>
+  <div class="modal fade" id="exampleModalLong{{image.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <h2 class="modal-title" id="exampleModalLongTitle">{{ image.name}}</h2>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                  </button>
+              </div>
+              <div class="modal-body">
+                  <img src="{{image.image.url}}" class="img-responsive" alt="Image" style="height: 40vh; width: 100%;">
+                  <h4 style="color: crimson;"> {{ image.description}} </h4>
+                  <span class="small">Location:</span><a href="" style="text-decoration: none;"><span class="small">{{image.location.location}}</span></a><span></span><span class="small"> Date :</span><a href="" style="text-decoration: none;"><span class="small">{{image.date |  date:"M d,Y , f A"}}</span></a> <br>
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              </div>
           </div>
-          <div class="card-body">
-            <h4 class="text-center" style="color: crimson;"> {{ image.name }} </h4>
-            <h4 class="text-center" style="color: crimson;"> {{ image.description }} </h4>
-            <span class="small">Location:</span><a href="" style="text-decoration: none;"><span class="small">{{image.location}}</span></a><span></span><span class="small"> Date :</span><a href="" style="text-decoration: none;"><span class="small">{{image.date |  date:"M d,Y , f A"}}</span></a>
-          </div>
-        </div><br>
       </div>
+  </div>
     {% endfor %}
   {% endif %}
   </div>

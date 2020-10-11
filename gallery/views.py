@@ -21,8 +21,7 @@ def search_category(request):
         return render(request,'galleries/search_category.html',{"message":message,"images":searched_images})
     
     else:
-        message= "You haven't searched for anything."
-        return render(request,'galleries/search_category.html',{"message":message})
+        return render(request,'galleries/search_category.html')
 
 def filter_by_location(request,location_id):
     try:
